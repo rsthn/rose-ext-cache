@@ -18,18 +18,22 @@ composer require rsthn/rose-ext-cache
 
 ## Expression Functions
 
-### `cache::valid` id:string [ttl:integer]
+### `cache::valid` id:string tag:string [ttl:integer]
 
 Determines if the cache entry identified by `id` is valid for the specified TTL (in seconds). Note that if no TTL is specified the default will be used.
 
-### `cache::touch` id:string
+### `cache::touch` id:string tag:string 
 
 Sets the modified time of a cache entry identified by `id` to the current time to prevent cache invalidation.
 
-### `cache::get` id:string [ttl:integer] value:object
+### `cache::get` id:string tag:string [ttl:integer] value:object
 
 Returns the contents of a cache entry given its `id` or creates it with the specified value if the entry is no longer valid or does not exist.
 
-### `cache::pass` id:string [ttl:integer] value:object
+### `cache::path` id:string
+
+Returns the path to a cache entry given its id, regardless if it exists or is valid or not.
+
+### `cache::pass` id:string tag:string [ttl:integer] value:object
 
 Uses similar syntax as `cache::get` but does not actually use the cache, it simply directly returns the value. Used as a quick way to bypass cache to run tests while maintaining the `cache::get` syntax.
